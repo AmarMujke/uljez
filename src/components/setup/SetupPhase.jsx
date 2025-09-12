@@ -1,15 +1,16 @@
 import { useState, useRef } from "react";
+import { useLanguage } from "../../hooks/useLanguage";
 
 export default function SetupPhase({ onStart }) {
-  const [language, setLanguage] = useState("english");
   const [newPlayer, setNewPlayer] = useState("");
   const [playerNames, setPlayerNames] = useState([]);
   const listRef = useRef(null);
+  const {language, setLanguage, t} = useLanguage();
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-purple-900 to-purple-700 p-6">
       <h1 className="text-5xl font-extrabold mb-8 text-yellow-400 drop-shadow-[0_0_15px_rgba(255,215,0,0.8)]">
-        Uljez
+        ULJEZ
       </h1>
 
       {/* SETUP CARD */}
@@ -22,16 +23,16 @@ export default function SetupPhase({ onStart }) {
           value={language}
           onChange={(e) => setLanguage(e.target.value)}
         >
-          <option value="english">English</option>
-          <option value="bosnian">Bosnian</option>
-          <option value="german">German</option>
+          <option value="english">English 🇬🇧</option>
+          <option value="bosnian">Bosnian 🇧🇦</option>
+          <option value="german">German 🇩🇪</option>
         </select>
 
         {/* ADD PLAYER INPUT */}
         <input
           value={newPlayer}
           onChange={(e) => setNewPlayer(e.target.value)}
-          placeholder="Enter player name"
+          placeholder={t.enterPlayerName}
           className="p-3 border-2 border-purple-700 bg-purple-900/70 text-yellow-200 placeholder-yellow-300 rounded-lg text-lg w-full focus:outline-none shadow-inner"
         />
 
@@ -49,7 +50,7 @@ export default function SetupPhase({ onStart }) {
           }}
           className="bg-purple-800 text-yellow-300 py-3 rounded-lg font-bold shadow-[0_5px_15px_rgba(128,0,128,0.6)] hover:bg-purple-700 transition"
         >
-          Add Player
+          {t.addPlayer}
         </button>
 
         {/* START GAME */}
@@ -57,7 +58,7 @@ export default function SetupPhase({ onStart }) {
           onClick={() => onStart(playerNames, language)}
           className="bg-purple-900 text-yellow-300 py-3 rounded-lg font-bold shadow-[0_5px_20px_rgba(0,0,0,0.6)] hover:bg-purple-800 transition mt-2"
         >
-          Start Game
+          {t.startGame}
         </button>
       </div>
 
@@ -68,7 +69,7 @@ export default function SetupPhase({ onStart }) {
       >
         {playerNames.length === 0 ? (
           <p className="text-center text-yellow-300/70 uppercase italic">
-            Please add players
+            {t.pleaseAddPlayers}
           </p>
         ) : (
           playerNames.map((name, i) => (

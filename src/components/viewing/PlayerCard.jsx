@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
+import { useLanguage } from "../../hooks/useLanguage";
 
 export default function PlayerCard({ player, onNext }) {
   const [flipped, setFlipped] = useState(false);
   const [showWord, setShowWord] = useState(false);
   const [hasBeenFlipped, setHasBeenFlipped] = useState(false);
+  const { t } = useLanguage();
 
   useEffect(() => {
     setHasBeenFlipped(false);
@@ -19,12 +21,10 @@ export default function PlayerCard({ player, onNext }) {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-purple-900 to-yellow-600 p-4 transition-colors duration-700">
-
       <h2 className="text-2xl/7 font-bold uppercase text-white mb-4">
         {player.name}
       </h2>
 
-      {/* CARD AND WRAPPER */}
       <div
         className="relative w-72 h-44 mb-8 cursor-pointer perspective"
         onClick={handleFlip}
@@ -42,7 +42,7 @@ export default function PlayerCard({ player, onNext }) {
                 : "border-green-500 shadow-lg shadow-green-500"
             }`}
           >
-            Tap to see your word
+            {t.tapToSee}
           </div>
 
           {/* BACK OF THE CARD */}
@@ -61,7 +61,7 @@ export default function PlayerCard({ player, onNext }) {
               : "opacity-0 pointer-events-none"
           }`}
         >
-          Word has been seen! <br /> Hand the phone to the next player.
+          {t.wordSeen} <br /> {t.handPhone}
         </p>
 
         <button
@@ -72,7 +72,7 @@ export default function PlayerCard({ player, onNext }) {
               : "opacity-0 pointer-events-none"
           }`}
         >
-          Next Player
+          {t.next}
         </button>
       </div>
     </div>

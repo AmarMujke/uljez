@@ -4,8 +4,18 @@ import Voting from "./components/voting/Voting.jsx";
 import CountdownCircle from "./components/countdown/CountDownCircle.jsx";
 import SetupPhase from "./components/setup/SetupPhase.jsx";
 import { assignRoles, assignWords } from "./utlis/gameLogic.js";
-import words from "./data/words.json";
 import Results from "./components/results/Results.jsx";
+
+import wordsEn from "./data/words-en.json";
+import wordsBs from "./data/words-bs.json";
+import wordsDe from "./data/words-de.json";
+import {LanguageProvider} from "./context/LanguageProvider.jsx";
+
+const wordPacks = {
+  english: wordsEn,
+  bosnian: wordsBs,
+  german: wordsDe,
+};
 
 export default function App() {
   const [players, setPlayers] = useState([]);
@@ -15,7 +25,7 @@ export default function App() {
 
   const startGame = (playerNames, language) => {
     const roles = assignRoles(playerNames.map((name) => ({ name })));
-    const wordsAssigned = assignWords(roles, words.food); // TODO: use language for category selection
+    const wordsAssigned = assignWords(roles, wordPacks[language].food);
     setPlayers(wordsAssigned);
     setPhase("viewing");
   };
@@ -33,28 +43,19 @@ export default function App() {
     setPhase("results");
   };
 
-  if (phase === "setup") {
-    return <SetupPhase onStart={startGame} />;
-  }
-
-  if (phase === "viewing") {
-    return <PlayerCard player={players[currentIndex]} onNext={nextPlayer} />;
-  }
-
-  if (phase === "countdown") {
-    return (
-      <CountdownCircle
-        duration={10} 
-        onComplete={() => setPhase("voting")}
-      />
-    );
-  }
-
-  if (phase === "voting") {
-    return <Voting players={players} onVoteEnd={handleVotes} />;
-  }
-
-  if (phase === "results") {
-    return <Results players={players} votes={votes} />;
-  }
+  return (
+    <LanguageProvider>
+      {phase === "setup" && <SetupPhase onStart={startGame} />}
+      {phase === "viewing" && (
+        <PlayerCard player={players[currentIndex]} onNext={nextPlayer} />
+      )}
+      {phase === "countdown" && (
+        <CountdownCircle duration={10} onComplete={() => setPhase("voting")} />
+      )}
+      {phase === "voting" && (
+        <Voting players={players} onVoteEnd={handleVotes} />
+      )}
+      {phase === "results" && <Results players={players} votes={votes} />}
+    </LanguageProvider>
+  );
 }

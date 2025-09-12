@@ -1,0 +1,12 @@
+{
+  "food": [
+    { "normal": "jabuka", "imposter": "banana" },
+    { "normal": "hljeb", "imposter": "pogaca" },
+    { "normal": "sir", "imposter": "puter" }
+  ],
+  "animals": [
+    { "normal": "pujdo", "imposter": "maco" },
+    { "normal": "konj", "imposter": "magarac" },
+    { "normal": "ptica", "imposter": "sova" }
+  ]
+}

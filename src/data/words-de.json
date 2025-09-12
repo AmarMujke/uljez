@@ -1,0 +1,12 @@
+{
+  "food": [
+    { "normal": "apfel", "imposter": "banana" },
+    { "normal": "brot", "imposter": "bun" },
+    { "normal": "kase", "imposter": "butter" }
+  ],
+  "animals": [
+    { "normal": "hund", "imposter": "katze" },
+    { "normal": "pferd", "imposter": "donkey" },
+    { "normal": "bird", "imposter": "owl" }
+  ]
+}

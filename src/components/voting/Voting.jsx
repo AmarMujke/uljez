@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
+import { useLanguage } from "../../hooks/useLanguage";
 
 export default function Voting({ players, onVoteEnd }) {
   const [selected, setSelected] = useState(null);
-  const [timer, setTimer] = useState(180); 
+  const [timer, setTimer] = useState(180);
+  const { t } = useLanguage();
 
   useEffect(() => {
     if (timer > 0) {
@@ -22,9 +24,11 @@ export default function Voting({ players, onVoteEnd }) {
   return (
     <div className="min-h-screen flex flex-col items-center bg-gradient-to-b from-purple-900 to-yellow-700 p-6 text-white">
       <h2 className="text-3xl font-extrabold mb-2 text-yellow-300 drop-shadow-md">
-        Voting Phase
+        {t.votingPhase}
       </h2>
-      <p className="mb-6 text-lg">Time left: {timer}s</p>
+      <p className="mb-6 text-lg">
+        {t.timeLeft} {timer}s
+      </p>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full max-w-lg">
         {players.map((p) => (
@@ -52,7 +56,7 @@ export default function Voting({ players, onVoteEnd }) {
             : "bg-gray-400 text-gray-700 cursor-not-allowed"
         }`}
       >
-        Confirm Vote
+        {t.confirmVote}
       </button>
     </div>
   );
