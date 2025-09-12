@@ -1,11 +1,11 @@
 import { useState } from "react";
-import PlayerCard from "./components/PlayerCard";
-import Voting from "./components/Voting";
-import CountdownCircle from "./components/CountDownCircle.jsx";
-import SetUpPhase from "./components/SetUpPhase.jsx";
-import { assignRoles, assignWords } from "./gameLogic.js";
-import words from "./words.json";
-import Results from "./components/Results.jsx";
+import PlayerCard from "./components/viewing/PlayerCard.jsx";
+import Voting from "./components/voting/Voting.jsx";
+import CountdownCircle from "./components/countdown/CountDownCircle.jsx";
+import SetupPhase from "./components/setup/SetupPhase.jsx";
+import { assignRoles, assignWords } from "./utlis/gameLogic.js";
+import words from "./data/words.json";
+import Results from "./components/results/Results.jsx";
 
 export default function App() {
   const [players, setPlayers] = useState([]);
@@ -34,7 +34,7 @@ export default function App() {
   };
 
   if (phase === "setup") {
-    return <SetUpPhase onStart={startGame} />;
+    return <SetupPhase onStart={startGame} />;
   }
 
   if (phase === "viewing") {

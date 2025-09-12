@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 
-export default function SetUpPhase({ onStart }) {
+export default function SetupPhase({ onStart }) {
   const [language, setLanguage] = useState("english");
   const [newPlayer, setNewPlayer] = useState("");
   const [playerNames, setPlayerNames] = useState([]);
