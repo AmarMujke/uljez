@@ -18,13 +18,13 @@ export default function PlayerCard({ player, onNext }) {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-black to-purple-400 p-4">
-      {/* Player name */}
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-purple-900 to-yellow-600 p-4 transition-colors duration-700">
+
       <h2 className="text-2xl/7 font-bold uppercase text-white mb-4">
         {player.name}
       </h2>
 
-      {/* Card and wrapper*/}
+      {/* CARD AND WRAPPER */}
       <div
         className="relative w-72 h-44 mb-8 cursor-pointer perspective"
         onClick={handleFlip}
@@ -34,9 +34,9 @@ export default function PlayerCard({ player, onNext }) {
             flipped ? "rotate-y-180 scale-105" : ""
           }`}
         >
-          {/* Front */}
+          {/* FRONT OF THE CARD */}
           <div
-            className={`absolute w-full h-full rounded-2xl bg-gradient-to-br from-blue-400 to-indigo-500 flex items-center justify-center text-white text-2xl font-bold backface-hidden border-4 ${
+            className={`absolute w-full h-full uppercase text-center rounded-2xl bg-linear-to-r from-yellow-900 to-yellow-600 flex items-center justify-center text-white text-2xl font-bold backface-hidden border-4 ${
               hasBeenFlipped
                 ? "border-red-500 shadow-lg shadow-red-500"
                 : "border-green-500 shadow-lg shadow-green-500"
@@ -45,14 +45,14 @@ export default function PlayerCard({ player, onNext }) {
             Tap to see your word
           </div>
 
-          {/* Back */}
-          <div className="absolute w-full h-full rounded-2xl bg-gradient-to-br from-green-400 to-teal-500 flex items-center justify-center text-white text-2xl font-bold border-4 border-white shadow-lg backface-hidden rotate-y-180">
+          {/* BACK OF THE CARD */}
+          <div className="absolute w-full h-full uppercase rounded-2xl bg-linear-to-r from-yellow-900 to-yellow-600  flex items-center justify-center text-white text-2xl font-bold border-4 border-white shadow-lg backface-hidden rotate-y-180">
             {showWord ? player.word : ""}
           </div>
         </div>
       </div>
 
-      {/* Text and button container */}
+      {/* TEXT AND BUTTON */}
       <div className="flex flex-col items-center">
         <p
           className={`text-lg text-white text-center transition-opacity duration-300 ${
@@ -61,12 +61,12 @@ export default function PlayerCard({ player, onNext }) {
               : "opacity-0 pointer-events-none"
           }`}
         >
-          Word has been seen! <br /> Hand the phone to next player.
+          Word has been seen! <br /> Hand the phone to the next player.
         </p>
 
         <button
           onClick={onNext}
-          className={`mt-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white px-8 py-3 rounded-full font-bold shadow-lg hover:scale-105 transition-transform ${
+          className={`mt-2 uppercase bg-gradient-to-l from-purple-800 to-purple-600 text-white px-8 py-3 rounded-full font-bold shadow-lg hover:scale-105 transition-transform ${
             !flipped && hasBeenFlipped
               ? "opacity-100"
               : "opacity-0 pointer-events-none"

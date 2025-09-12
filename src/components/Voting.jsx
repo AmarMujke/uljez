@@ -1,54 +1,58 @@
 import { useState, useEffect } from "react";
 
 export default function Voting({ players, onVoteEnd }) {
-  const [votes, setVotes] = useState({});
-  const [timer, setTimer] = useState(180); // 3 minutes
+  const [selected, setSelected] = useState(null);
+  const [timer, setTimer] = useState(180); 
 
   useEffect(() => {
     if (timer > 0) {
-      const interval = setInterval(() => setTimer(t => t - 1), 1000);
+      const interval = setInterval(() => setTimer((t) => t - 1), 1000);
       return () => clearInterval(interval);
     } else {
-      onVoteEnd(votes);
+      if (selected) onVoteEnd({ imposter: selected });
     }
-  }, [timer, votes, onVoteEnd]);
+  }, [timer, selected, onVoteEnd]);
 
-  const vote = (voter, target) => {
-    setVotes(prev => ({ ...prev, [voter]: target }));
+  const handleSubmit = () => {
+    if (selected) {
+      onVoteEnd({ imposter: selected });
+    }
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center bg-gradient-to-b from-pink-200 to-purple-200 p-6">
-      <h2 className="text-3xl font-extrabold mb-6 text-indigo-700 drop-shadow-md">
+    <div className="min-h-screen flex flex-col items-center bg-gradient-to-b from-purple-900 to-yellow-700 p-6 text-white">
+      <h2 className="text-3xl font-extrabold mb-2 text-yellow-300 drop-shadow-md">
         Voting Phase
       </h2>
-      <p className="mb-4 text-lg text-gray-800">Time left: {timer}s</p>
+      <p className="mb-6 text-lg">Time left: {timer}s</p>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full max-w-lg">
-        {players.map(p => (
+        {players.map((p) => (
           <div
             key={p.name}
-            className="bg-white rounded-2xl shadow-xl p-4 flex justify-between items-center"
+            onClick={() => setSelected(p.name)}
+            className={`cursor-pointer rounded-2xl p-6 text-center font-bold text-xl shadow-lg transition transform hover:scale-105 
+              ${
+                selected === p.name
+                  ? "bg-yellow-400 text-purple-900 border-4 border-purple-800"
+                  : "bg-purple-700 text-yellow-200 border-2 border-yellow-500"
+              }`}
           >
-            <span className="text-xl font-semibold">{p.name}</span>
-            <select
-              onChange={e => vote(p.name, e.target.value)}
-              className="p-2 border rounded-lg text-lg"
-            >
-              <option value="">Vote</option>
-              {players.filter(t => t.name !== p.name).map(target => (
-                <option key={target.name} value={target.name}>{target.name}</option>
-              ))}
-            </select>
+            {p.name}
           </div>
         ))}
       </div>
 
       <button
-        onClick={() => onVoteEnd(votes)}
-        className="mt-6 bg-gradient-to-r from-purple-500 to-pink-500 text-white px-8 py-3 rounded-full font-bold shadow-lg hover:scale-105 transition-transform"
+        onClick={handleSubmit}
+        disabled={!selected}
+        className={`mt-8 px-8 py-3 rounded-full font-bold shadow-xl transition-transform ${
+          selected
+            ? "bg-gradient-to-r from-yellow-400 to-yellow-600 text-purple-900 hover:scale-105"
+            : "bg-gray-400 text-gray-700 cursor-not-allowed"
+        }`}
       >
-        Submit Votes
+        Confirm Vote
       </button>
     </div>
   );
