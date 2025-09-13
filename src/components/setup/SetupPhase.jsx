@@ -24,8 +24,8 @@ export default function SetupPhase({ onStart }) {
           onChange={(e) => setLanguage(e.target.value)}
         >
           <option value="english">English 🇬🇧</option>
-          <option value="bosnian">Bosnian 🇧🇦</option>
-          <option value="german">German 🇩🇪</option>
+          <option value="bosnian">Bosanski 🇧🇦</option>
+          <option value="german">Deutsch 🇩🇪</option>
         </select>
 
         {/* ADD PLAYER INPUT */}
