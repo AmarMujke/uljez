@@ -1,3 +1,4 @@
+// GAME LOGIC HELPER FUNCTIONS
 export function assignRoles(players) {
   const imposterIndex = Math.floor(Math.random() * players.length);
   return players.map((player, index) => ({
@@ -7,9 +8,10 @@ export function assignRoles(players) {
 }
 
 export function assignWords(players, categoryWords) {
-  const wordObj = categoryWords[Math.floor(Math.random() * categoryWords.length)];
-  return players.map(player => ({
+  const wordObj =
+    categoryWords[Math.floor(Math.random() * categoryWords.length)];
+  return players.map((player) => ({
     ...player,
-    word: player.role === "imposter" ? wordObj.imposter : wordObj.normal
+    word: player.role === "imposter" ? wordObj.imposter : wordObj.normal,
   }));
 }

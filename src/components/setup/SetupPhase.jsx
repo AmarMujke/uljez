@@ -5,7 +5,7 @@ export default function SetupPhase({ onStart }) {
   const [newPlayer, setNewPlayer] = useState("");
   const [playerNames, setPlayerNames] = useState([]);
   const listRef = useRef(null);
-  const {language, setLanguage, t} = useLanguage();
+  const { language, setLanguage, t } = useLanguage();
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-purple-900 to-purple-700 p-6">
