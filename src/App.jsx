@@ -14,23 +14,25 @@ export default function App() {
     phase,
     currentIndex,
     votes,
+    setPhase,
+    setPlayers,
     startGame,
     nextPlayer,
     handleVotes,
     updateLeaderboard,
     resetGame,
     nextRound,
-    setPhase,
+    exitGame,
   } = useGameLogic();
 
   return (
     <LanguageProvider>
       {phase === "setup" && <SetupPhase onStart={startGame} />}
       {phase === "viewing" && (
-        <PlayerCard player={players[currentIndex]} onNext={nextPlayer} />
+        <PlayerCard player={players[currentIndex]} onNext={nextPlayer} onExit={exitGame} setPlayers={setPlayers} />
       )}
       {phase === "countdown" && (
-        <CountdownCircle duration={3} onComplete={() => setPhase("voting")} />
+        <CountdownCircle duration={3} onComplete={() => setPhase("voting")} starter={players[0].name}/>
       )}
       {phase === "voting" && (
         <Voting players={players} onVoteEnd={handleVotes} />

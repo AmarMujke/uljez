@@ -1,7 +1,7 @@
-export default function Leaderboard({
-  leaderboard,
-  highlight
-}) {
+import { useLanguage } from "../../hooks/useLanguage";
+
+export default function Leaderboard({ leaderboard, highlight }) {
+  const { t } = useLanguage();
   const rows = Object.entries(leaderboard)
     .map(([name, score]) => ({ name, score }))
     .sort((a, b) => b.score - a.score);
@@ -11,7 +11,7 @@ export default function Leaderboard({
       <div className="bg-gradient-to-br from-purple-800 to-purple-700 rounded-2xl p-3 shadow-xl border-2 border-yellow-400/30">
         <div className="flex items-center justify-between mb-3">
           <h4 className="text-yellow-300 font-extrabold text-lg">
-            Leaderboard
+            {t.leaderboard}
           </h4>
           <span className="text-sm text-yellow-200/80">
             {rows.length} players
@@ -21,7 +21,7 @@ export default function Leaderboard({
         <div className="bg-purple-900/60 rounded-lg divide-y divide-yellow-500/20 overflow-hidden max-h-56">
           {rows.length === 0 ? (
             <div className="p-4 text-center text-yellow-200/70 italic">
-              No scores yet
+              {t.noScoresYet}
             </div>
           ) : (
             rows.map((r, i) => {
@@ -64,7 +64,7 @@ export default function Leaderboard({
         </div>
 
         <div className="mt-3 text-xs text-yellow-200/70">
-          Tip: top player is highlighted. Scores persist between rounds.
+          {t.tip}
         </div>
       </div>
     </div>

@@ -1,6 +1,7 @@
 // GAME LOGIC HOOK
 import { usePersistentState } from "./usePersistentState.js";
-import { assignRoles, assignWords } from "../utlis/gameLogic.js";
+import { assignRoles, assignWords } from "../utils/gameLogic.js";
+
 import wordsEn from "../data/words-en.json";
 import wordsBs from "../data/words-bs.json";
 import wordsDe from "../data/words-de.json";
@@ -21,12 +22,14 @@ export function useGameLogic() {
   const [phase, setPhase] = usePersistentState("phase", "setup");
   const [currentIndex, setCurrentIndex] = usePersistentState("currentIndex", 0);
   const [votes, setVotes] = usePersistentState("votes", null);
+  
 
   const startGame = (playerNames, language) => {
     setRoundLanguage(language);
     const roles = assignRoles(playerNames.map((name) => ({ name })));
     const wordsAssigned = assignWords(roles, wordPacks[language].food);
-    setPlayers(wordsAssigned);
+    const playersWithFlipped = wordsAssigned.map(p => ({ ...p, hasBeenFlipped: false }));
+    setPlayers(playersWithFlipped);
     setCurrentIndex(0);
     setVotes(null);
     setPhase("viewing");
@@ -79,11 +82,17 @@ export function useGameLogic() {
     const names = players.map((player) => player.name);
     const roles = assignRoles(names.map((name) => ({ name })));
     const wordsAssigned = assignWords(roles, wordPacks[roundLanguage].food);
+    const playersWithFlipped = wordsAssigned.map(p => ({ ...p, hasBeenFlipped: false }));
 
-    setPlayers(wordsAssigned);
+    setPlayers(playersWithFlipped);
     setCurrentIndex(0);
     setVotes(null);
     setPhase("viewing");
+  };
+
+  const exitGame = () => {
+    setPhase("setup");
+    resetGame();
   };
 
   return {
@@ -93,12 +102,14 @@ export function useGameLogic() {
     phase,
     currentIndex,
     votes,
+    setPlayers,
+    setPhase,
     startGame,
     nextPlayer,
     handleVotes,
     updateLeaderboard,
     resetGame,
     nextRound,
-    setPhase,
+    exitGame,
   };
 }
