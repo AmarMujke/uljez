@@ -7,8 +7,9 @@ export default function SetupPhase({ onStart }) {
   const [newPlayer, setNewPlayer] = useState("");
   const [playerNames, setPlayerNames] = useState([]);
   const [showInfo, setShowInfo] = useState(false);
-  const listRef = useRef(null);
   const { language, setLanguage, t } = useLanguage();
+  const listRef = useRef(null);
+  const [countdownMinutes, setCountdownMinutes] = useState(3);
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-purple-900 to-purple-700 p-6">
@@ -52,6 +53,22 @@ export default function SetupPhase({ onStart }) {
           <option value="german">Deutsch 🇩🇪</option>
         </select>
 
+        {/* COUNTDOWN DURATION */}
+        <select
+          className="p-3 rounded-lg text-lg w-full
+            bg-purple-900/40 backdrop-blur-md text-white 
+            border border-yellow-400/30
+            shadow-[inset_0_0_12px_rgba(0,0,0,0.4)]
+            focus:outline-none focus:ring-2 focus:ring-yellow-400/60
+            focus:scale-[0.98] transition-all duration-200"
+          value={countdownMinutes}
+          onChange={(e) => setCountdownMinutes(Number(e.target.value))}
+        >
+          <option value={3}>{t.duration3}</option>
+          <option value={5}>{t.duration5}</option>
+          <option value={7}>{t.duration7}</option>
+        </select>
+
         {/* ADD PLAYER INPUT */}
         <input
           value={newPlayer}
@@ -84,9 +101,15 @@ export default function SetupPhase({ onStart }) {
 
         {/* START GAME */}
         <Button
-          onClick={() => onStart(playerNames, language)}
-          className="bg-purple-900 text-yellow-300 py-3 rounded-lg font-bold shadow-[0_5px_20px_rgba(0,0,0,0.6)]
-             hover:bg-purple-800 transition active:translate-y-1 active:scale-95 mt-2"
+          onClick={() => onStart(playerNames, language, countdownMinutes)}
+          disabled={playerNames.length < 3}
+          className={`bg-purple-900 text-yellow-300 py-3 rounded-lg font-bold shadow-[0_5px_20px_rgba(0,0,0,0.6)]
+                      hover:bg-purple-800 transition active:translate-y-1 active:scale-95 mt-2
+                      ${
+                        playerNames.length < 3
+                          ? "opacity-50 cursor-not-allowed"
+                          : ""
+                      }`}
         >
           {t.startGame}
         </Button>

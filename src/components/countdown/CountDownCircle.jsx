@@ -42,7 +42,7 @@ export default function CountdownCircle({
       {!active ? (
         // PRE-COUNTDOWN SCREEN
         <div className="text-center text-white">
-          <h2 className="text-4xl font-bold mb-4">{starter} starts!</h2>
+          <h2 className="text-4xl font-bold mb-4 uppercase">{starter} {t.starter}</h2>
           <p className="text-6xl font-extrabold animate-pulse">
             {preCountdown}
           </p>

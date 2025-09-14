@@ -18,6 +18,12 @@ function shuffleArray(array) {
   return helperArray;
 }
 
+export const getRandomCategoryWords = (language, wordPacks) => {
+  const categories = Object.keys(wordPacks[language]);
+  const randomCategory = categories[Math.floor(Math.random() * categories.length)];
+  return wordPacks[language][randomCategory];
+};
+
 export function assignWords(players, categoryWords) {
   const wordObj =
     categoryWords[Math.floor(Math.random() * categoryWords.length)];

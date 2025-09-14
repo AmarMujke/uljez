@@ -16,6 +16,7 @@ export default function App() {
     votes,
     setPhase,
     setPlayers,
+    countdownDuration,
     startGame,
     nextPlayer,
     handleVotes,
@@ -32,7 +33,7 @@ export default function App() {
         <PlayerCard player={players[currentIndex]} onNext={nextPlayer} onExit={exitGame} setPlayers={setPlayers} />
       )}
       {phase === "countdown" && (
-        <CountdownCircle duration={3} onComplete={() => setPhase("voting")} starter={players[0].name}/>
+        <CountdownCircle duration={countdownDuration * 60} onComplete={() => setPhase("voting")} starter={players[0].name}/>
       )}
       {phase === "voting" && (
         <Voting players={players} onVoteEnd={handleVotes} />

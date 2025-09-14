@@ -5,10 +5,11 @@ const translations = {
     startGame: "Start Game",
     addPlayer: "Add Player",
     enterPlayerName: "Enter player name",
-    pleaseAddPlayers: "Please add players",
+    pleaseAddPlayers: "Please add at least 3 players",
     next: "Next",
     nextPlayer: "Next Player",
     timeLeft: "Time left",
+    starter: "starts!",
 
     // SETUP
     selectLanguage: "Select Language",
@@ -39,6 +40,11 @@ const translations = {
     question: "Are you sure you want to exit?",
     cancel: "cancel",
     exit: "exit",
+
+    // DURATION
+    duration3: "3 minute round",
+    duration5: "5 minute round",
+    duration7: "7 minute round",
 
     // INFO MODAL
     stepsButtons: {
@@ -81,17 +87,18 @@ const translations = {
     startGame: "Započni igru",
     addPlayer: "Dodaj igrača",
     enterPlayerName: "Unesi ime igrača",
-    pleaseAddPlayers: "Molimo dodajte igrače",
+    pleaseAddPlayers: "Molimo dodajte barem 3 igrača",
     next: "Dalje",
     nextPlayer: "Sljedeći igrač",
     timeLeft: "Preostalo vrijeme",
+    starter: "pocinje!",
 
     // SETUP
     selectLanguage: "Izaberi jezik",
     remove: "Ukloni",
 
     // PLAYER CARD
-    tapToSee: "Dodirni da vidiš riječ",
+    tapToSee: "Dodirni i vidi riječ",
     wordSeen: "Riječ je viđena!",
     handPhone: "Predaj telefon sljedećem igraču.",
 
@@ -115,6 +122,11 @@ const translations = {
     question: "Da li ste sigurni?",
     cancel: "otkaži",
     exit: "napusti",
+
+    // DURATION
+    duration3: "3 minute po rundi",
+    duration5: "5 minuta po rundi",
+    duration7: "7 minuta po rundi",
 
     // INFO MODAL
     stepsButtons: {
@@ -156,10 +168,11 @@ const translations = {
     startGame: "Spiel starten",
     addPlayer: "Spieler hinzufügen",
     enterPlayerName: "Spielernamen eingeben",
-    pleaseAddPlayers: "Bitte Spieler hinzufügen",
+    pleaseAddPlayers: "Bitte fügen Sie mindestens 3 Spieler hinzu",
     next: "Weiter",
     nextPlayer: "Nächster Spieler",
     timeLeft: "Verbleibende Zeit",
+    starter: "beginnt!",
 
     // SETUP
     selectLanguage: "Sprache wählen",
@@ -190,6 +203,11 @@ const translations = {
     question: "Bist du sicher, dass du beenden möchtest?",
     cancel: "Abbrechen",
     exit: "Beenden",
+
+    // DURATION
+    duration3: "3 minute runde",
+    duration5: "5 minute runde",
+    duration7: "7 minute runde",
 
     // INFO MODAL
     stepsButtons: {

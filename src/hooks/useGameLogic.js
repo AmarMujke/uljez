@@ -1,6 +1,10 @@
 // GAME LOGIC HOOK
 import { usePersistentState } from "./usePersistentState.js";
-import { assignRoles, assignWords } from "../utils/gameLogic.js";
+import {
+  assignRoles,
+  assignWords,
+  getRandomCategoryWords,
+} from "../utils/gameLogic.js";
 
 import wordsEn from "../data/words-en.json";
 import wordsBs from "../data/words-bs.json";
@@ -22,13 +26,18 @@ export function useGameLogic() {
   const [phase, setPhase] = usePersistentState("phase", "setup");
   const [currentIndex, setCurrentIndex] = usePersistentState("currentIndex", 0);
   const [votes, setVotes] = usePersistentState("votes", null);
-  
+  const [countdownDuration, setCountdownDuration] = usePersistentState("countdownDuration", 3);
 
-  const startGame = (playerNames, language) => {
+  const startGame = (playerNames, language, duration) => {
     setRoundLanguage(language);
+    setCountdownDuration(duration);
     const roles = assignRoles(playerNames.map((name) => ({ name })));
-    const wordsAssigned = assignWords(roles, wordPacks[language].food);
-    const playersWithFlipped = wordsAssigned.map(p => ({ ...p, hasBeenFlipped: false }));
+    const categoryWords = getRandomCategoryWords(roundLanguage, wordPacks);
+    const wordsAssigned = assignWords(roles, categoryWords);
+    const playersWithFlipped = wordsAssigned.map((p) => ({
+      ...p,
+      hasBeenFlipped: false,
+    }));
     setPlayers(playersWithFlipped);
     setCurrentIndex(0);
     setVotes(null);
@@ -81,8 +90,12 @@ export function useGameLogic() {
 
     const names = players.map((player) => player.name);
     const roles = assignRoles(names.map((name) => ({ name })));
-    const wordsAssigned = assignWords(roles, wordPacks[roundLanguage].food);
-    const playersWithFlipped = wordsAssigned.map(p => ({ ...p, hasBeenFlipped: false }));
+    const categoryWords = getRandomCategoryWords(roundLanguage, wordPacks);
+    const wordsAssigned = assignWords(roles, categoryWords);
+    const playersWithFlipped = wordsAssigned.map((p) => ({
+      ...p,
+      hasBeenFlipped: false,
+    }));
 
     setPlayers(playersWithFlipped);
     setCurrentIndex(0);
@@ -104,6 +117,7 @@ export function useGameLogic() {
     votes,
     setPlayers,
     setPhase,
+    countdownDuration,
     startGame,
     nextPlayer,
     handleVotes,
