@@ -63,9 +63,7 @@ export default function Leaderboard({ leaderboard, highlight }) {
           )}
         </div>
 
-        <div className="mt-3 text-xs text-yellow-200/70">
-          {t.tip}
-        </div>
+        <div className="mt-3 text-xs text-yellow-200/70">{t.tip}</div>
       </div>
     </div>
   );

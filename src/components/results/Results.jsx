@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { useLanguage } from "../../hooks/useLanguage";
 import Button from "../button/Button";
 
@@ -16,14 +16,16 @@ export default function Results({
   const impostor = players.find((p) => p.role === "imposter");
   const votedOut = Object.values(votes || {});
   const impostorCaught = votedOut.includes(impostor?.name);
-  const hasUpdateLeaderboard = useRef(false);
 
   useEffect(() => {
-    if (!impostor || hasUpdateLeaderboard.current) return;
+    if (!impostor) return;
+
+    const updatedKey = `leaderboard-updated-${impostor.name}`;
+    if (localStorage.getItem(updatedKey)) return;
 
     if (!impostorCaught) {
       updateLeaderboard?.(impostor.name);
-      hasUpdateLeaderboard.current = true;
+      localStorage.setItem(updatedKey, "true");
     }
   }, [impostor, impostorCaught, updateLeaderboard]);
 

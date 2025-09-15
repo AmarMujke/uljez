@@ -26,7 +26,10 @@ export function useGameLogic() {
   const [phase, setPhase] = usePersistentState("phase", "setup");
   const [currentIndex, setCurrentIndex] = usePersistentState("currentIndex", 0);
   const [votes, setVotes] = usePersistentState("votes", null);
-  const [countdownDuration, setCountdownDuration] = usePersistentState("countdownDuration", 3);
+  const [countdownDuration, setCountdownDuration] = usePersistentState(
+    "countdownDuration",
+    3
+  );
 
   const startGame = (playerNames, language, duration) => {
     setRoundLanguage(language);
@@ -87,6 +90,10 @@ export function useGameLogic() {
       setPhase("setup");
       return;
     }
+
+    localStorage.removeItem(
+      "leaderboard-updated-" + players.find((p) => p.role === "imposter")?.name
+    );
 
     const names = players.map((player) => player.name);
     const roles = assignRoles(names.map((name) => ({ name })));
