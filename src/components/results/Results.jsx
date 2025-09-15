@@ -40,7 +40,7 @@ export default function Results({ players, votes, leaderboard = {}, updateLeader
               onClick={nextRound}
               className="flex-1 bg-purple-800 text-yellow-300 px-10 h-12 py-2 rounded-xl font-semibold shadow hover:scale-105 transition transform"
             >
-              {t.playAgain || "Play Again"}
+              {t.playAgain || "Next Round"}
             </Button>
 
             <Button
@@ -50,7 +50,7 @@ export default function Results({ players, votes, leaderboard = {}, updateLeader
               }}
               className="flex-1 bg-red-600 text-white px-4 h-12 py-2 rounded-xl font-semibold shadow hover:scale-105 transition transform"
             >
-              {t.exitGame || "Exit"}
+              {t.endGame || "End Game"}
             </Button>
           </div>
         </div>

@@ -10,6 +10,8 @@ const translations = {
     nextPlayer: "Next Player",
     timeLeft: "Time left",
     starter: "starts!",
+    playAgain: "Next Round",
+    endGame: "End Game",
 
     // SETUP
     selectLanguage: "Select Language",
@@ -92,6 +94,8 @@ const translations = {
     nextPlayer: "Sljedeći igrač",
     timeLeft: "Preostalo vrijeme",
     starter: "pocinje!",
+    playAgain: "Nova Runda",
+    endGame: "Završi Igru",
 
     // SETUP
     selectLanguage: "Izaberi jezik",
@@ -173,6 +177,8 @@ const translations = {
     nextPlayer: "Nächster Spieler",
     timeLeft: "Verbleibende Zeit",
     starter: "beginnt!",
+    playAgain: "Neue Runde",
+    endGame: "Beenden",
 
     // SETUP
     selectLanguage: "Sprache wählen",
