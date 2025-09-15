@@ -2,6 +2,7 @@
 
 A small practice project built with **React + Vite**.  
 It’s a party-style game where players try to spot the **impostor** who doesn’t know the correct word.
+The game is designed for mobile play due to its rules, but it is responsive across all screen sizes.
 
 👉 Live Demo: [https://uljez.onrender.com/](https://uljez.onrender.com/)
 
