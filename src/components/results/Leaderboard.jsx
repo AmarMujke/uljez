@@ -18,7 +18,7 @@ export default function Leaderboard({ leaderboard, highlight }) {
           </span>
         </div>
 
-        <div className="bg-purple-900/60 rounded-lg divide-y divide-yellow-500/20 overflow-hidden max-h-56">
+        <div className="bg-purple-900/60 rounded-lg divide-y divide-yellow-500/20 overflow-y-auto max-h-56">
           {rows.length === 0 ? (
             <div className="p-4 text-center text-yellow-200/70 italic">
               {t.noScoresYet}
