@@ -35,7 +35,7 @@ export function useGameLogic() {
     setRoundLanguage(language);
     setCountdownDuration(duration);
     const roles = assignRoles(playerNames.map((name) => ({ name })));
-    const categoryWords = getRandomCategoryWords(roundLanguage, wordPacks);
+    const categoryWords = getRandomCategoryWords(language, wordPacks);
     const wordsAssigned = assignWords(roles, categoryWords);
     const playersWithFlipped = wordsAssigned.map((p) => ({
       ...p,

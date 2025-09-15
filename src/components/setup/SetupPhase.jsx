@@ -87,7 +87,7 @@ export default function SetupPhase({ onStart }) {
           onClick={() => {
             if (newPlayer.trim()) {
               setPlayerNames([...playerNames, newPlayer.trim()]);
-              setNewPlayer(""); // clear input
+              setNewPlayer("");
               listRef.current?.scrollTo({
                 top: listRef.current.scrollHeight,
                 behavior: "smooth",
